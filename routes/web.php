@@ -29,6 +29,21 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::prefix('/pendaftaran')->group(function () {   
+    Route::get('/', function () { 
+        return view('pendaftaran/buat-akun'); 
+    });
+    Route::get('/data-pribadi', function () { 
+        return view('pendaftaran/data-pribadi'); 
+    });
+    Route::get('/pilihan-prodi', function () { 
+        return view('pendaftaran/pilihan-prodi'); 
+    });
+    Route::get('/finish', function () { 
+        return view('pendaftaran/finish'); 
+    });
+});
+
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/dashboard', function () {
         return view('home', ['users' => User::get(),]);
